@@ -1,0 +1,75 @@
+<form [formGroup]="form">
+  <!--<p>Form value: {{form.value | json}}</p>
+  <p>Form Status: {{form.status | json}}</p>-->
+
+    <div class=" form-group p-3 shadow p-12 mb-12 bg-white rounded">
+      <div class="row">
+        <div class="col-md-8">
+          <label>Nome Live:</label>
+          <input type="text"  [ngClass]="validarCss(f.nome)"  class="form-control"  formControlName="nome" placeholder="Nome do Instrutor">
+          <div *ngIf="f.nome.errors?.required &&  f.nome.touched"  class="invalid-feedback" >
+            Nome do Live obrigatório
+          </div>
+        </div>
+        <div class=" form-group col-md-4">
+          <label>Instrutor:</label>
+          <select class="form-control" formControlName="instrutorId" >
+            <option value="{{selects.id}}"  class="form-control" *ngFor="let selects of Instrutores">{{selects.nome}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class=" form-group col-md-4">
+          <label>Data hora início:</label>
+          <input type="datetime"  [ngClass]="validarCss(f.dataHoraInicio)" formControlName="dataHoraInicio"  class="form-control" placeholder="Data hora de inicio"
+          value="{{_Live.dataHoraInicio | DateTime}}"
+          bsDatepicker
+          [bsConfig]="bsconfigDatepicker"
+          >
+          <div *ngIf="f.dataHoraInicio.errors?.required &&  f.dataHoraInicio.touched" class="invalid-feedback">
+            Data hora início obrigatório
+          </div>
+        </div>
+        <div class=" form-group col-md-4">
+          <label>Duração em minutos:</label>
+          <input type="text"  [ngClass]="validarCss(f.duracaoMinutos)"  mask="000"  class="form-control"  formControlName="duracaoMinutos" placeholder="Duração em minutos">
+        </div>
+        <div *ngIf="f.duracaoMinutos.errors?.required &&  f.duracaoMinutos.touched"  class="invalid-feedback" >
+          Duração em minutos  obrigatório
+        </div>
+        <div class=" form-group col-md-4">
+          <label>Valor da Inscrição:</label>
+          <input type="text"  currencyMask  [ngClass]="validarCss(f.valorInscricao)" [options]="{ prefix: 'R$ ',align: 'left' ,  thousands: '.', decimal: ',' }"  class="form-control"  formControlName="valorInscricao">
+        </div>
+        <div *ngIf="f.valorInscricao.errors?.required &&  f.valorInscricao.touched"  class="invalid-feedback" >
+         Valor da inscrição obrigatório
+        </div>
+    </div>
+    <div class="row">
+      <div class=" form-group col-md-12">
+        <label>Descrição:</label>
+        <input type="text"  [ngClass]="validarCss(f.descricao)"  class="form-control"  formControlName="descricao" placeholder="Descrição">
+      </div>
+    </div>
+    <br/>
+    <div class="card-footer ">
+        <div class="row">
+          <div class="col-md-10">
+            <button class="btn btn-outline-secondary  border" (click)="resetForm()">
+              <i class="fa fa-cancel"></i>
+              &nbsp;
+                Cancelar
+            </button>
+          </div>
+        <div class="col-md-2">
+            <button class="btn btn-success bt_right" [disabled]="!form.valid" (click)="salvarLive()">
+              <!--<span class="spinner-border spinner-border-sm mr-1"></span>-->
+              <i class="fa fa-save"></i>
+              &nbsp;
+              Salvar
+            </button>
+          </div>
+         </div>
+    </div>
+    </div>
+  </form>

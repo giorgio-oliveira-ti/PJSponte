@@ -1,0 +1,64 @@
+<form [formGroup]="form">
+  <!--<p>Form value: {{form.value | json}}</p>
+  <p>Form Status: {{form.status | json}}</p>-->
+
+    <div class=" form-group p-3 shadow p-12 mb-12 bg-white rounded">
+      <div class="row">
+        <div class="col-md-6">
+          <label>Nome Live:</label>
+          <input type="text"  [ngClass]="validarCss(f.nome)"  class="form-control"  formControlName="nome"
+          placeholder="Nome Live">
+          <div *ngIf="f.nome.errors?.required &&  f.nome.touched"  class="invalid-feedback" >
+            Nome Live obrigatório
+          </div>
+        </div>
+
+        <div class=" form-group col-md-6">
+          <label>E-mail:</label>
+          <input type="text"  [ngClass]="validarCss(f.email)" formControlName="email"  class="form-control" placeholder="E-mail">
+          <div *ngIf="f.email.errors?.required &&  f.email.touched" class="invalid-feedback">
+            E-mail obrigatório
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <label>Data de nascimento:</label>
+          <input type="datetime"   [ngClass]="validarCss(f.dataNascimento)"  class="form-control" formControlName="dataNascimento"  placeholder=""
+          value="{{_Instrutor.dataNascimento | DateTimeForP}}"
+          bsDatepicker
+          [bsConfig]="bsconfigDatepicker">
+          <div *ngIf="f.dataNascimento.errors?.required &&  f.dataNascimento.touched" class="invalid-feedback" >
+           Data Hora obrigatório
+          </div>
+        </div>
+        <div class=" form-group col-md-6">
+          <label>Endereço Instagram:</label>
+          <input type="text"  [ngClass]="validarCss(f.andInstagram)" formControlName="andInstagram"  class="form-control" placeholder="Endereço Instagram">
+          <div *ngIf="f.andInstagram.errors?.required &&  f.andInstagram.touched" class="invalid-feedback">
+            E-mail obrigatório
+          </div>
+        </div>
+    </div>
+    <br/>
+    <div class="card-footer ">
+        <div class="row">
+          <div class="col-md-10">
+            <button class="btn btn-outline-secondary  border" (click)="resetForm()">
+              <i class="fa fa-cancel"></i>
+              &nbsp;
+                Cancelar
+            </button>
+          </div>
+        <div class="col-md-2">
+            <button class="btn btn-success bt_right" [disabled]="!form.valid" (click)="salvarInstrutor()">
+              <!--<span class="spinner-border spinner-border-sm mr-1"></span>-->
+              <i class="fa fa-save"></i>
+              &nbsp;
+              Salvar
+            </button>
+          </div>
+         </div>
+    </div>
+    </div>
+  </form>

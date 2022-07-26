@@ -1,0 +1,21 @@
+
+<div class="d-flex  p-3 my-3  bg-primary text-white rounded shadow-sm">
+  <div class="container">
+    <div class="row">
+      <div class="col-9">
+        <div class="d-flex align-items-center mr-auto">
+          <i class="{{iconCless}} icon"></i>
+          <div class="lh-100 sbt-1">
+            <h3 class="mb-0">{{titulo}}</h3>
+            <small>{{subTitulo}}</small>
+          </div>
+        </div>
+      </div>
+      <div class=" p-3 col-3" *ngIf="botaolista == true">
+          <button class="btn btn-outline-light" (click)="listar()" >
+          Listar {{titulo}}
+         </button>
+      </div>
+    </div>
+  </div>
+</div>
